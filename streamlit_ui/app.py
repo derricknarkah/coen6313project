@@ -9,7 +9,7 @@ from blob_utils import upload_to_blob
 
 # Microservice endpoints
 microservice_urls = {
-    "characters": "https://characters-gtfce4guh7f8cshv.eastus-01.azurewebsites.net/extract_characters",
+    "characters": "https://characters-gtfce4guh7f8cshv.canadacentral-01.azurewebsites.net",
     "introduction": "https://introduction-f3dafuavdbh2awdw.eastus-01.azurewebsites.net/extract_introduction",
     "theme": "https://themeservice-gdhdgafyctbhgtce.eastus-01.azurewebsites.net/extract_theme",
     "sentiment": "https://sentiments-dtcchga9ergvbpa8.eastus-01.azurewebsites.net/extract_sentiment"  
