@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        service:
+        service: 
           - characters
           - introduction
           - sentiments
@@ -23,9 +23,18 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v3
 
+    - name: Set Publish Profile
+      id: set-secret
+      run: |
+        if [ "${{ matrix.service }}" == "characters" ]; then echo "AZURE_PUBLISH_PROFILE=${{ secrets.AZURE_PUBLISH_PROFILE_CHARACTERS }}" >> $GITHUB_ENV; fi
+        if [ "${{ matrix.service }}" == "introduction" ]; then echo "AZURE_PUBLISH_PROFILE=${{ secrets.AZURE_PUBLISH_PROFILE_INTRODUCTION }}" >> $GITHUB_ENV; fi
+        if [ "${{ matrix.service }}" == "sentiments" ]; then echo "AZURE_PUBLISH_PROFILE=${{ secrets.AZURE_PUBLISH_PROFILE_SENTIMENTS }}" >> $GITHUB_ENV; fi
+        if [ "${{ matrix.service }}" == "themeservice" ]; then echo "AZURE_PUBLISH_PROFILE=${{ secrets.AZURE_PUBLISH_PROFILE_THEMESERVICE }}" >> $GITHUB_ENV; fi
+        if [ "${{ matrix.service }}" == "streamlit_ui" ]; then echo "AZURE_PUBLISH_PROFILE=${{ secrets.AZURE_PUBLISH_PROFILE_STREAMLITUI }}" >> $GITHUB_ENV; fi
+
     - name: Deploy ${{ matrix.service }} Service to Azure
       uses: azure/webapps-deploy@v2
       with:
         app-name: ${{ matrix.service }}
-        publish-profile: ${{ secrets['AZURE_PUBLISH_PROFILE_' + matrix.service | upper] }}
+        publish-profile: ${{ env.AZURE_PUBLISH_PROFILE }}
         package: .
