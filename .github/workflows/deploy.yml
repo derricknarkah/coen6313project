@@ -3,7 +3,7 @@ name: Build and Push Docker Images
 on:
   push:
     branches:
-      - main  # Trigger this workflow when code is pushed to the main
+      - main  # Trigger this workflow when code is pushed to the main branch
 
 jobs:
   build-and-push:
@@ -35,3 +35,5 @@ jobs:
         context: ./${{ matrix.service }}
         push: true
         tags: derricknarkah/${{ matrix.service }}:latest
+        build-args: |
+          OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}
