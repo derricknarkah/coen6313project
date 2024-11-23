@@ -1,0 +1,7 @@
+streamlit
+flask==3.0.3
+pdfplumber
+requests==2.32.3
+azure-cosmos==4.8.0
+azure-storage-blob==12.24.0
+python-dotenv

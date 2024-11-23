@@ -1,0 +1,9 @@
+streamlit
+flask==3.0.3
+pdfplumber
+requests==2.32.3
+langchain
+openai
+python-dotenv
+langchain-openai==0.2.8
+azure-cosmos==4.8.0

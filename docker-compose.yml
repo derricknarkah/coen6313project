@@ -1,0 +1,65 @@
+
+networks:
+  atomize_network:
+    driver: bridge
+
+services:
+  characters_service:
+    build:
+      context: ./characters_service
+    image: derricknarkah/characters_service:latest
+    container_name: characters_service
+    ports:
+      - "5001:5001"
+    networks:
+      - atomize_network
+    env_file:
+      - ./characters_service/.env
+
+  introduction_service:
+    build:
+      context: ./introduction_service
+    image: derricknarkah/introduction_service:latest
+    container_name: introduction_service
+    ports:
+      - "5002:5001"
+    networks:
+      - atomize_network
+    env_file:
+      - ./introduction_service/.env
+
+  theme_service:
+    build:
+      context: ./theme_service
+    image: derricknarkah/theme_service:latest
+    container_name: theme_service
+    ports:
+      - "5003:5001"
+    networks:
+      - atomize_network
+    env_file:
+      - ./theme_service/.env
+
+  sentiment_service:
+    build:
+      context: ./sentiment_service
+    image: derricknarkah/sentiment_service:latest
+    container_name: sentiment_service
+    ports:
+      - "5004:5001"
+    networks:
+      - atomize_network
+    env_file:
+      - ./sentiment_service/.env
+
+  streamlit_ui:
+    build:
+      context: ./streamlit_ui
+    image: derricknarkah/streamlit_ui:latest
+    container_name: streamlit_ui
+    ports:
+      - "8501:8501"
+    networks:
+      - atomize_network
+    env_file:
+      - ./streamlit_ui/.env
