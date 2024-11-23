@@ -15,7 +15,7 @@ jobs:
         service:
           - characters_service
           - introduction_service
-          - sentiments_service
+          - sentiment_service
           - theme_service
           - streamlit_ui
 
