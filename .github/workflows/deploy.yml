@@ -1,4 +1,4 @@
-name: Build and Push Docker Images
+name: Build, Push Docker Images, and Update SwaggerHub
 
 on:
   push:
@@ -37,3 +37,12 @@ jobs:
         tags: derricknarkah/${{ matrix.service }}:latest
         build-args: |
           OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}
+
+    # Add SwaggerHub CLI steps after Docker image builds
+    - name: Install SwaggerHub CLI
+      run: npm install -g swaggerhub-cli
+
+    - name: Update SwaggerHub API Documentation
+      run: swaggerhub api:update DERRICKNARKAH_1/atomizeAPI/1.0.0 -f unified_openapi.yaml
+      env:
+        SWAGGERHUB_API_KEY: ${{ secrets.SWAGGERHUB_API_KEY }}

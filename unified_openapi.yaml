@@ -1,0 +1,144 @@
+openapi: 3.0.1
+info:
+  title: Atomize+ API
+  description: Unified API documentation for all Atomize+ microservices.
+  version: 1.0.0
+servers:
+  - url: https://characters-gtfce4guh7f8cshv.eastus-01.azurewebsites.net
+    description: Characters Service Production Server
+  - url: https://introduction-f3dafuavdbh2awdw.eastus-01.azurewebsites.net
+    description: Introduction Service Production Server
+  - url: https://themeservice-gdhdgafyctbhgtce.eastus-01.azurewebsites.net
+    description: Theme Service Production Server
+  - url: https://sentiments-dtcchga9ergvbpa8.eastus-01.azurewebsites.net
+    description: Sentiment Service Production Server
+paths:
+  /extract_characters:
+    post:
+      summary: Extract characters from text
+      description: |
+        Takes an input text and extracts the main characters along with a brief description of their roles.
+        If the text is a scientific paper, it lists authors instead.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                text:
+                  type: string
+                  example: "John is a brave knight. Sarah is a skilled archer."
+              required:
+                - text
+      responses:
+        '200':
+          description: Successfully extracted characters
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  characters:
+                    type: string
+                    example: "John - a brave knight; Sarah - a skilled archer."
+        '400':
+          description: Invalid input
+        '500':
+          description: Internal server error
+
+  /extract_introduction:
+    post:
+      summary: Extract introduction from text
+      description: Takes an input text and extracts its introduction section.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                text:
+                  type: string
+                  example: "Once upon a time, there lived a brave knight..."
+              required:
+                - text
+      responses:
+        '200':
+          description: Successfully extracted introduction
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  introduction:
+                    type: string
+                    example: "Once upon a time, there lived a brave knight..."
+        '400':
+          description: Invalid input
+        '500':
+          description: Internal server error
+
+  /extract_theme:
+    post:
+      summary: Extract theme from text
+      description: Takes an input text and extracts its main theme.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                text:
+                  type: string
+                  example: "The story revolves around friendship and bravery."
+              required:
+                - text
+      responses:
+        '200':
+          description: Successfully extracted theme
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  theme:
+                    type: string
+                    example: "Friendship and bravery"
+        '400':
+          description: Invalid input
+        '500':
+          description: Internal server error
+
+  /extract_sentiment:
+    post:
+      summary: Analyze sentiment from text
+      description: Takes an input text and analyzes its sentiment.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                text:
+                  type: string
+                  example: "The day was beautiful, and everyone was happy."
+              required:
+                - text
+      responses:
+        '200':
+          description: Successfully analyzed sentiment
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sentiment:
+                    type: string
+                    example: "Positive"
+        '400':
+          description: Invalid input
+        '500':
+          description: Internal server error
