@@ -41,7 +41,7 @@ paths:
                 properties:
                   characters:
                     type: string
-                    example: "John - a brave knight; Sarah - a skilled archer."
+                    example: "John - a brave knight \n Sarah - a skilled archer."
         '400':
           description: Invalid input
         '500':
