@@ -26,7 +26,7 @@ def extract_introduction():
     text = data.get('text', '')
     response = llm.generate([intro_template.format(text=text)])
     introduction = response.generations[0][0].text.strip()
-    return jsonify({"introduction": introduction})  # Ensure response key matches expected key
+    return jsonify({"introduction": introduction})  
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=80)
