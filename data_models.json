@@ -1,0 +1,32 @@
+
+{
+    "id": "12e34364d",
+    "user_id": "0123",
+    "file_name": "exact_file_name",  
+    "task": "Characters",
+    "Total pages": 200,
+    "Pages selected": [1,2],
+    "extracted_data": "result",
+    "upload_timestamp": "datetime.now().isoformat()"
+}
+
+
+{
+    "user_id": "0123",
+    "id": "123345",
+    "file_name": "extact_file_name",
+    "tasks_summary": [
+        {
+            "task": "Characters",
+            "extracted_data": "extracted_characters",
+            "timestamp": "2024-11-24T02:00:27.145451",
+            "Pages selected": [1,2]
+        },
+	    {
+            "task": "Theme",
+            "extracted_data": "extracted_theme",
+            "timestamp": "2024-11-24T02:00:27.145451",
+            "Pages selected": [3,4]
+        }
+        ]
+}
