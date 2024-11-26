@@ -20,7 +20,7 @@ intro_template = PromptTemplate(
               "Text:\n{text}\n\nintroduction:")
 )
 
-@app.route('/extract_introduction', methods=['POST'])
+@app.route('/introduction', methods=['POST'])
 def extract_introduction():
     data = request.get_json()
     text = data.get('text', '')

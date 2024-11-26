@@ -18,7 +18,7 @@ sentiment_template = PromptTemplate(
     template="Analyze the sentiment of the following text and determine if it is Positive, Negative, or Neutral:\n\nText:\n{text}\n\nSentiment:"
 )
 
-@app.route('/extract_sentiment', methods=['POST'])
+@app.route('/sentiment', methods=['POST'])
 def extract_sentiment():
     data = request.get_json()
     text = data.get('text', '')

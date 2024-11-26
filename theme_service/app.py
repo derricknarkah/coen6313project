@@ -6,7 +6,6 @@ from dotenv import load_dotenv
 
 app = Flask(__name__)
 
-
 # Load the API key from the .env file
 load_dotenv()
 openai_api_key = os.getenv('OPENAI_API_KEY')

@@ -8,9 +8,6 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy .env file into the image
-# COPY .env /app/.env
-
 # Copy the Streamlit app code
 COPY . .
 

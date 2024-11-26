@@ -15,7 +15,7 @@ servers:
   - url: https://sentiments-dtcchga9ergvbpa8.eastus-01.azurewebsites.net
     description: Sentiment Service Production Server
 paths:
-  /extract_characters:
+  /characters:
     post:
       summary: Extract characters from text
       description: |
@@ -49,7 +49,7 @@ paths:
         '500':
           description: Internal server error
 
-  /extract_introduction:
+  /introduction:
     post:
       summary: Extract introduction from text
       description: Takes an input text and extracts its introduction section.
@@ -81,7 +81,7 @@ paths:
         '500':
           description: Internal server error
 
-  /extract_theme:
+  /theme:
     post:
       summary: Extract theme from text
       description: Takes an input text and extracts its main theme.
@@ -138,7 +138,7 @@ paths:
         "500":
           description: Internal server error
 
-  /extract_sentiment:
+  /sentiment:
     post:
       summary: Analyze sentiment from text
       description: Takes an input text and analyzes its sentiment.

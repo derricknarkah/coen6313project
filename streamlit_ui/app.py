@@ -10,10 +10,10 @@ from blob_utils import upload_to_blob
 
 # Microservice endpoints
 microservice_urls = {
-    "characters": "https://characters-gtfce4guh7f8cshv.eastus-01.azurewebsites.net/extract_characters",
-    "introduction": "https://introduction-f3dafuavdbh2awdw.eastus-01.azurewebsites.net/extract_introduction",
-    "theme": "https://themeservice-gdhdgafyctbhgtce.eastus-01.azurewebsites.net/extract_theme",
-    "sentiment": "https://sentiments-dtcchga9ergvbpa8.eastus-01.azurewebsites.net/extract_sentiment"  
+    "characters": "https://characters-gtfce4guh7f8cshv.eastus-01.azurewebsites.net/characters",
+    "introduction": "https://introduction-f3dafuavdbh2awdw.eastus-01.azurewebsites.net/introduction",
+    "theme": "https://themeservice-gdhdgafyctbhgtce.eastus-01.azurewebsites.net/theme",
+    "sentiment": "https://sentiments-dtcchga9ergvbpa8.eastus-01.azurewebsites.net/sentiment"  
 }
 
 
@@ -40,7 +40,6 @@ st.write("Enter or paste your text below, and select the information you want to
 
 # Input box for text and dropdown for task selection
 article = st.text_area("Enter text here", height=200, placeholder="Type or paste your text here...")
-#task_option = st.selectbox("Choose Task:", ["Characters", "Introduction", "Theme"])
 task_option = st.selectbox("Choose Task:", ["Characters", "Introduction", "Theme","Sentiment"])
 
 # Analyze button for text input
@@ -71,7 +70,7 @@ if st.button("🔍 Analyze Text"):
                     primary_data = {
                         "id": session_id,
                         "user_id": user_id,
-                        "file_name": "manual_input",  # Placeholder for text input
+                        "file_name": "manual_input", 
                         "task": task_option,
                         "Total pages": 1,
                         "Pages selected": [1],
@@ -107,7 +106,7 @@ pdf_task_option = st.selectbox("Choose PDF Task:", ["Characters", "Introduction"
 def extract_text_from_pdf(file, start_page, end_page):
     text = ''
     with pdfplumber.open(file) as pdf:
-        for i in range(start_page - 1, end_page):  # Adjust for zero-based indexing
+        for i in range(start_page - 1, end_page): 
             try:
                 page_text = pdf.pages[i].extract_text()
                 if page_text:

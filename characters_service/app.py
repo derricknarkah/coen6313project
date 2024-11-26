@@ -5,9 +5,7 @@ import os
 from dotenv import load_dotenv
 import logging
 
-
 app = Flask(__name__)
-
 
 # Load the API key from the .env file
 load_dotenv()
@@ -23,13 +21,13 @@ character_template = PromptTemplate(
               "Text:\n{text}\n\ncharacters:")
 )
 
-@app.route('/extract_characters', methods=['POST'])
+@app.route('/characters', methods=['POST'])
 def extract_characters():
     data = request.get_json()
     text = data.get('text', '')
     response = llm.generate([character_template.format(text=text)])
     characters = response.generations[0][0].text.strip()
-    return jsonify({"characters": characters})  # Ensure response key matches expected key
+    return jsonify({"characters": characters}) 
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=80)
