@@ -1,0 +1,79 @@
+version: '3.8'
+
+services:
+  characters_service:
+    build: ./characters_service
+    container_name: characters_service
+    ports:
+      - "5001:5001"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    #env_file:
+    #  - ./characters_service/.env
+    healthcheck:
+      test: ["CMD", "curl", "-f", "-X", "POST", "-H", "Content-Type: application/json", "-d", "{\"text\":\"Health check\"}", "http://localhost:5001/extract_characters"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  introduction_service:
+    build: ./introduction_service
+    container_name: introduction_service
+    ports:
+      - "5002:5001"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    #env_file:
+    #  - ./introduction_service/.env
+    healthcheck:
+      test: ["CMD", "curl", "-f", "-X", "POST", "-H", "Content-Type: application/json", "-d", "{\"text\":\"Health check\"}", "http://localhost:5001/extract_introduction"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  theme_service:
+    build: ./theme_service
+    container_name: theme_service
+    ports:
+      - "5003:5001"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    #env_file:
+    #  - ./theme_service/.env
+    healthcheck:
+      test: ["CMD", "curl", "-f", "-X", "POST", "-H", "Content-Type: application/json", "-d", "{\"text\":\"Health check\"}", "http://localhost:5001/extract_theme"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  sentiment_service:
+    build: ./sentiment_service
+    container_name: sentiment_service
+    ports:
+      - "5004:5001"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    #env_file:
+    #  - ./sentiment_service/.env
+    healthcheck:
+      test: ["CMD", "curl", "-f", "-X", "POST", "-H", "Content-Type: application/json", "-d", "{\"text\":\"Health check\"}", "http://localhost:5001/extract_sentiment"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  streamlit_ui:
+    build: ./streamlit_ui
+    container_name: streamlit_ui
+    ports:
+      - "8501:8501"
+    depends_on:
+      characters_service:
+        condition: service_healthy
+      introduction_service:
+        condition: service_healthy
+      theme_service:
+        condition: service_healthy
+      sentiment_service:
+        condition: service_healthy
+    environment:
+      - PYTHONUNBUFFERED=1

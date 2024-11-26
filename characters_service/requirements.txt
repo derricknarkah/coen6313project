@@ -1,0 +1,8 @@
+streamlit
+flask
+pdfplumber
+requests
+langchain
+openai
+python-dotenv
+langchain_community
