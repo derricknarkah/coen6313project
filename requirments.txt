@@ -1,7 +1,0 @@
-streamlit==1.27.0
-Flask==2.3.3
-flask-cors==3.0.10
-transformers==4.33.0
-requests==2.31.0
-pyngrok==5.2.2
-torch==2.0.1
