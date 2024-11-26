@@ -3,7 +3,7 @@ name: Build, Push Docker Images, and Update SwaggerHub
 on:
   push:
     branches:
-      - main  # Trigger this workflow when code is pushed to the main branch
+      - main 
 
 jobs:
   build-and-push:
@@ -17,6 +17,7 @@ jobs:
           - introduction_service
           - sentiment_service
           - theme_service
+          - user_data_service
           - streamlit_ui
 
     steps:
