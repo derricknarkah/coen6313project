@@ -10,6 +10,8 @@ servers:
     description: Introduction Service Production Server
   - url: https://themeservice-gdhdgafyctbhgtce.eastus-01.azurewebsites.net
     description: Theme Service Production Server
+  - url: https://userdata-g4cpbvcudyajavh5.eastus-01.azurewebsites.net
+    description: User Data Service Production Server
   - url: https://sentiments-dtcchga9ergvbpa8.eastus-01.azurewebsites.net
     description: Sentiment Service Production Server
 paths:
@@ -109,6 +111,31 @@ paths:
         '400':
           description: Invalid input
         '500':
+          description: Internal server error
+
+  /user_data:
+    get:
+      summary: Fetch user data from the secondary database
+      description: Retrieve all documents related to a specific user_id from the secondary database.
+      parameters:
+        - name: user_id
+          in: query
+          required: true
+          description: The user ID to fetch data for.
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+        "400":
+          description: Bad request (e.g., missing or invalid user_id)
+        "500":
           description: Internal server error
 
   /extract_sentiment:

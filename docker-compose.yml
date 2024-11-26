@@ -40,6 +40,18 @@ services:
     env_file:
       - ./theme_service/.env
 
+  user_data_service:
+    build:
+      context: ./user_data_service
+    image: derricknarkah/user_data_service:latest
+    container_name: user_data_service
+    ports:
+      - "5005:5001"
+    networks:
+      - atomize_network
+    env_file:
+      - ./user_data_service/.env
+
   sentiment_service:
     build:
       context: ./sentiment_service

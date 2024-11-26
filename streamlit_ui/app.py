@@ -7,6 +7,7 @@ from datetime import datetime
 from db_utils import save_to_primary, update_secondary
 from blob_utils import upload_to_blob
 
+
 # Microservice endpoints
 microservice_urls = {
     "characters": "https://characters-gtfce4guh7f8cshv.eastus-01.azurewebsites.net/extract_characters",
@@ -15,21 +16,6 @@ microservice_urls = {
     "sentiment": "https://sentiments-dtcchga9ergvbpa8.eastus-01.azurewebsites.net/extract_sentiment"  
 }
 
-# # Microservice endpoints (Abideep)
-# microservice_urls = {
-#     "characters": "http://characters_service:5001/extract_characters",
-#     "introduction": "http://introduction_service:5001/extract_introduction",
-#     "theme": "http://theme_service:5001/extract_theme",
-#     "sentiment": "http://sentiment_service:5001/extract_sentiment"  
-# }
-
-# # For Local Run
-# microservice_urls = {
-#     "characters": "http://localhost:5001/extract_characters",
-#     "introduction": "http://localhost:5002/extract_introduction",
-#     "theme": "http://localhost:5003/extract_theme",
-#     "sentiment": "http://localhost:5004/extract_sentiment"
-# }
 
 task_map = {
     "Theme": "theme",
@@ -73,7 +59,7 @@ if st.button("🔍 Analyze Text"):
             session_id = f"session-{uuid.uuid4().hex[:10]}"
 
             # Step 2: Select a random user ID
-            user_ids = [1234, 5678, 9101]
+            user_ids = [1234, 5678]
             user_id = random.choice(user_ids)
             try:
                 # Make the request
@@ -157,7 +143,7 @@ if uploaded_file is not None:
                     try:
                         # Step 1: Generate session ID and select a random user ID
                         session_id = f"session-{uuid.uuid4().hex[:10]}"
-                        user_ids = [1234, 5678, 91011]
+                        user_ids = [1234, 5678]
                         user_id = random.choice(user_ids)
 
                         # Step 2: Extract file name
@@ -196,3 +182,4 @@ if uploaded_file is not None:
                 st.error("Could not extract text from the specified page range.")
         else:
             st.warning("End page must be greater than or equal to start page.")
+
